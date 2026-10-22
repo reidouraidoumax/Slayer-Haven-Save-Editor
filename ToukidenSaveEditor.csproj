@@ -1,0 +1,87 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<RootNamespace>ToukidenSaveEditor</RootNamespace>
+		<AssemblyName>ToukidenSaveEditor</AssemblyName>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>Resources\tk.ico</ApplicationIcon>
+		<Version>2.0.0</Version>
+	</PropertyGroup>
+
+	<!-- Single-file publish: produces one self-contained .exe with the .NET runtime and
+       every embedded resource (cheat files + fonts) baked in - no loose files alongside
+       it. Override RuntimeIdentifier at publish time if targeting a different platform
+       (e.g. -r win-arm64). -->
+	<PropertyGroup>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Resources\tk.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<!-- Cheats are baked into the assembly at build time instead of copied next to the
+       exe. To change a cheat, edit the .txt file and rebuild - CheatRepository reads
+       these via GetManifestResourceStream using the LogicalName below. -->
+	<ItemGroup>
+		<EmbeddedResource Include="Cheats.txt">
+			<LogicalName>ToukidenSaveEditor.Cheats.txt</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="MitamaCheats.txt">
+			<LogicalName>ToukidenSaveEditor.MitamaCheats.txt</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<!-- Redesign fonts (SIL Open Font License, see Resources\Fonts\OFL-*.txt).
+       Subset to Latin + the handful of kanji the UI draws, and loaded at runtime by
+       Theme\FontLibrary.cs into a PrivateFontCollection - nothing is installed on the
+       user's machine. -->
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Fonts\TKNotoSerif-500.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKNotoSerif-500.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKNotoSerif-600.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKNotoSerif-600.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKNotoSerif-700.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKNotoSerif-700.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKShippori-500.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKShippori-500.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKShippori-600.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKShippori-600.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKShippori-700.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKShippori-700.ttf</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Fonts\TKShippori-800.ttf">
+			<LogicalName>ToukidenSaveEditor.Fonts.TKShippori-800.ttf</LogicalName>
+		</EmbeddedResource>
+		<None Include="Resources\Fonts\OFL-NotoSerifJP.txt" />
+		<None Include="Resources\Fonts\OFL-ShipporiMincho.txt" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,54 @@
+# Toukiden 2 - Cheat definitions
+#
+# Add new cheats below as another block, separated by a blank line.
+# Lines starting with # are comments.
+#
+# Fields:
+#   Name          Display name shown in the Cheats tab
+#   Description   Short line shown under the name
+#   Tag           (optional) small label chip shown next to the name
+#   Action=<Type> key=value key=value ...    (a cheat can have several Action lines,
+#                                              applied in the order they appear)
+#
+# Action types and their keys (Offset/Length/Value/Count/Stride/Step accept hex
+# like 0x1234 or plain decimal; Step may be negative):
+#   Fill      Offset, Length, Value   - writes Value's low byte, Length times
+#   Write8    Offset, Value           - writes one byte
+#   Write16   Offset, Value           - writes a little-endian 16-bit value
+#   Write32   Offset, Value           - writes a little-endian 32-bit value
+#   Sequence  Offset, Count, Stride, Width, Value, Step
+#             writes Count values of Width bits (8/16/32), starting at Value and
+#             incrementing by Step each write; addresses step by Stride bytes.
+#             This is the equivalent of a Save Wizard Type 4 (repeater) code.
+
+Name=Unlock All Craftings
+Description=Unlocks every weapon, armor and upgrade recipe at the blacksmith
+Tag=Crafting
+Action=Fill Offset=0x49A73 Length=3000 Value=0x01
+
+Name=Max Haku (Cash)
+Description=Sets Haku to 99,999,990
+Tag=Currency
+Action=Write32 Offset=0x41EEB Value=0x05F5E0F6
+
+Name=All Items 999
+Description=Sets the quantity of every item to 999
+Tag=Inventory
+Action=Sequence Offset=0x48303 Count=796 Stride=4 Width=32 Value=0x03E70000 Step=1
+Action=Write32 Offset=0x48F6F Value=0x03E70347
+Action=Sequence Offset=0x48F73 Count=25 Stride=4 Width=32 Value=0x03E70351 Step=1
+Action=Write32 Offset=0x48FD3 Value=0x03E7036B
+Action=Write32 Offset=0x48FD7 Value=0x03E7036C
+Action=Write32 Offset=0x48FDB Value=0x03E7036E
+Action=Write32 Offset=0x48FDF Value=0x03E70370
+Action=Write32 Offset=0x48FE3 Value=0x03E70372
+Action=Sequence Offset=0x48FE7 Count=141 Stride=4 Width=32 Value=0x03E70374 Step=1
+Action=Sequence Offset=0x49217 Count=46 Stride=4 Width=32 Value=0x03E70400 Step=1
+Action=Write32 Offset=0x492CB Value=0x03E7042F
+Action=Write32 Offset=0x492CF Value=0x03E70430
+Action=Write32 Offset=0x492D3 Value=0x03E70432
+Action=Write32 Offset=0x492D7 Value=0x03E70434
+Action=Write32 Offset=0x492DB Value=0x03E70436
+Action=Write32 Offset=0x492DF Value=0x03E70438
+Action=Sequence Offset=0x492E3 Count=28 Stride=4 Width=32 Value=0x03E7043A Step=1
+Action=Write32 Offset=0x4A62B Value=0x0000044C

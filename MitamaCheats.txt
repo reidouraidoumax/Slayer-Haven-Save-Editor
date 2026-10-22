@@ -1,0 +1,74 @@
+# Toukiden 2 - Mitama cheats
+#
+# Same Cheats.txt grammar (see Cheats.txt for the full field reference).
+# Table base 0x51A6D, stride 0x31 (49 bytes) per mitama, ids 0-199 (the 200
+# official mitamas). Record layout:
+#   0x00-0x23   9 x float32   skill proficiency (slots 0-8)
+#   0x24-0x2C   9 x byte      skill level/stars (slots 0-8)
+#   0x2D        byte          status (0x00 undiscovered, 0x0B unlocked)
+#   0x2E-0x30   3 x byte      equipped boost 1-3 -> slot index (0-8), 0xFF none
+#
+# The "own all" cheats include an explicit Write8 forcing Admiral Perry
+# (id 0xC7/199) after the repeater - confirmed by testing that the status
+# repeater alone silently drops the very last entry in its range.
+#
+# Confirmed by testing: proficiency alone does not instantly max a skill -
+# the in-game recalculation only grants one star per trigger and resets
+# proficiency to 0 regardless of how much was stored.
+
+Name=Own All Mitamas
+Description=Unlocks all 200 Mitamas (does not pop trophy, so you can use it anytime)
+Tag=Collection
+Action=Sequence Offset=0x51A9A Count=200 Stride=49 Width=8 Value=0x0000000B Step=0
+Action=Write8 Offset=0x540B1 Value=0x0B
+
+Name=Own All Mitamas EXCEPT Fujiwara no Hidesato (Trophy)
+Description=Start a new game, apply the cheat. Defeat the first Ogre outside of town and the trophy pops after cutscenes
+Tag=Recommended
+Action=Sequence Offset=0x51A9A Count=200 Stride=49 Width=8 Value=0x0000000B Step=0
+Action=Write8 Offset=0x540B1 Value=0x0B
+Action=Write8 Offset=0x522A4 Value=0x00
+
+Name=Mitama Proficiency: 2 Stars + High Progress
+Description=Sets all skills to 2 stars with max progress - one more town-exit finishes the 3rd star (pops trophy as well)
+Tag=Skills
+Action=Sequence Offset=0x51A91 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A92 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A93 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A94 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A95 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A96 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A97 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A98 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A99 Count=200 Stride=49 Width=8 Value=0x00000002 Step=0
+Action=Sequence Offset=0x51A6D Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A71 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A75 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A79 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A7D Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A81 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A85 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A89 Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+Action=Sequence Offset=0x51A8D Count=200 Stride=49 Width=32 Value=0x497423F0 Step=0
+
+Name=Mitama Proficiency: Instant 3 Filled Stars
+Description=Sets all skills to 3 filled stars for every Mitama
+Tag=Skills
+Action=Sequence Offset=0x51A91 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A92 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A93 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A94 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A95 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A96 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A97 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A98 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A99 Count=200 Stride=49 Width=8 Value=0x00000003 Step=0
+Action=Sequence Offset=0x51A6D Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A71 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A75 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A79 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A7D Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A81 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A85 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A89 Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
+Action=Sequence Offset=0x51A8D Count=200 Stride=49 Width=32 Value=0x00000000 Step=0
